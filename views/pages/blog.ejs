@@ -1,0 +1,24 @@
+<div ng-controller="blog" ng-init='data = <%= JSON.stringify(posts) %>'>
+    <div ng-repeat='post in data track by $index' ng-init="limit[$index] = amount">
+        <h1>{{post.title}}</h1>
+        <p ng-bind-html="Uneditable(post.body) | trust"></p>
+        <div class="post_info"> Written on: {{FixDate(post.created)}}</div>
+        <div class="comments">
+            <a class="comment-more" ng-if="post.comments.length > limit[$index]" ng-click="More($index)">Show more..</a>
+            <div class="comments-container" ng-if="post.comments.length > 0">
+                <div ng-repeat="comment in post.comments | limitTo: limit[$index] : -limit[$index]">
+                    <p class="comment-text">{{comment.text}} <span class="comment-user"> -{{comment.user}}</span></p>
+                </div>
+            </div>
+            <div class="comments-no" ng-if="post.comments.length == 0">
+                No Comments
+            </div>
+        </div>
+        <textarea ng-model="com[$index]" class="comment-input" placeholder="Comment.."></textarea>
+        <div class="comment-btn">
+            <input type="text" class="left" ng-model="use[$index]" placeholder="Name  *(required)">
+            <button ng-click="SaveComment($index)">Submit</button>
+            <button ng-click="CancelComment($index)">Cancel</button>
+        </div>
+    </div>
+</div>

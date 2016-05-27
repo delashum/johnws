@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <% include partials/head %>
+</head>
+
+<body ng-app="app">
+    <div id="container">
+        <% include partials/header %>
+            <div id="content">
+                <%- include(page) %>
+            </div>
+    </div>
+    <% include partials/footer %>
+</body>
+
+</html>
