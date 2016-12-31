@@ -1,5 +1,5 @@
 <div id="header">
-    <h1><a href="home">johnw<strong>Shumway</strong></a></h1>
+    <h1><a href="/">johnw<strong>Shumway</strong></a></h1>
     <h2>Med student. Family man. Machine Learning enthusiast.</h2>
 </div>
 <div id="navigation" ng-controller="header">
@@ -9,7 +9,7 @@
         <li><a href="/contact">Contact</a></li>
         <li>
             <div class="dropdown">
-                <span><a href="#">Blog</a></span>
+                <span><a href="/blog/all">Blog</a></span>
                 <div class="dropdown-content">
                     <p ng-repeat="blog in blogs">
                         <a href="/blog/{{blog}}"><span class="uc">{{blog}}</span></a>

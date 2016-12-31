@@ -16,7 +16,9 @@ router.get('/login', function (req, res, next) {
 
 router.post('/login/try', function (req, res, next) {
     Auth(req, res, next, function (data) {
-        res.cookie('i', data[0].password);
+        res.cookie('i', data[0].password, {
+            maxAge: 1800000
+        });
         res.sendStatus(200);
     });
 });
@@ -46,6 +48,9 @@ router.post('/view', function (req, res, next) {
             next(err);
         }
 
+        if (!john[0]) {
+            return;
+        }
         var analytics = john[0].analytics,
             id = john[0]._id,
             today = new Date(),
@@ -108,6 +113,10 @@ router.get('/blog/:type', function (req, res, next) {
 
     var check = {
         type: req.params.type
+    }
+
+    if (req.params.type == "all") {
+        check = {};
     }
 
     Post.find(check).sort({
@@ -220,11 +229,18 @@ router.post('/blog/:type/new', function (req, res, next) {
 
 
 router.get('/:page', function (req, res, next) {
+
     res.render('index', {
         page: "pages/" + req.params.page
-    });
+    })
 });
 
+
+router.get('/', function (req, res, next) {
+    res.render('index', {
+        page: "pages/home"
+    });
+});
 
 
 router.get('*', function (req, res, next) {

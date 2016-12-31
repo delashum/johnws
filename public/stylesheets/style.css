@@ -76,7 +76,7 @@
 }
 
 .comment-text {
-    margin: 10px;
+    margin: 5px 0px;
 }
 
 .comment-more {
@@ -222,7 +222,7 @@ Quill
 #content p {
     padding: 2px 20px;
     text-align: justify;
-    text-indent: 0.5cm;
+    /*    text-indent: 0.5cm;*/
     line-height: 1.8em;
 }
 
